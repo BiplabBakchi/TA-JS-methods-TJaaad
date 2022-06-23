@@ -254,11 +254,18 @@ Example:
   ```
   - `filter` After filtering creates a new array with all the elements that pass the test described in the function
 16. `flat`
-- Parameter:
-  - Return:
+ - Parameter: Depth (accepts a number defaults to 1) 
+  - Return: A new array with the sub-array elements concatenated into it.
   - Example:
   ```js
+  let arr1 = [1, 2, [3, 4]];
+  arr1.flat(); // [1, 2, 3, 4]
+  let nums = [1, 2, [3, 4, [5, 6]]];
+  nums.flat(2); // [1, 2, 3, 4, 5, 6]
+  let arr3 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+  arr3.flat(3); // [1, 2, 3, 4, 5, 6, 7, 8, Array(2)]
   ```
+  - `flat` Creates a new array with all the sub-array concatenated up to the specified depth.
 17. `forEach`
   - Parameter: - callbackFn
                - element
@@ -273,17 +280,33 @@ Example:
   let price = [2000, 3000, 3440, 7000];
   price.forEach((price) => console.log(price));
   let fruits = ['Mango', 'Apple', 'Banana', 'Grapes', 'Papaya', 'Orange', 'Blue berry'];
-  let basketOfFruits = [];
-  fruits.forEach((fruit) => {
-    basketOfFruits.push(fruit)
-  })
+  let basketOfFruits = function(fruit) {
+    console.log(fruit)
+  }
+  fruits.forEach(basketOfFruits);
   ```
 18. `map`
-  - Parameter:
-  - Return:
+  - Parameter: call back function
+  - Return: A new array with each element being the result of the callback function.
   - Example:
   ```js
-  ```
+  let fruits = ['Mango', 'Apple', 'Banana', 'Grapes', 'Papaya', 'Orange', 'Blue berry'];
+  let basketOfFruits = function(fruit) {
+    return fruit;
+  }
+  fruits.map(basketOfFruits); // ['Mango', 'Apple', 'Banana', 'Grapes', 'Papaya', 'Orange', 'Blue berry']
+  let array1 = [1, 2, 3, 4, 5, 6];
+  let double = function(num) {
+    return num * 2;
+  }
+  array1.map(double);//[2, 4, 6, 8, 10, 12]
+  let numbers = [2, 6, 10, 11, 15, 18];
+  let square = function(num) {
+    return num * num;
+  }
+  numbers.map(square); // [4, 36, 100, 121, 225, 324]
+  ``` 
+  - `map` Returns a new array with the outcomes of the function described
 19. `pop`
   - Parameter: No parameter
   - Return: The removed element from the array
@@ -296,24 +319,55 @@ Example:
   let numbers = [1, 2, 3, 4 , 5 , 6, 7, 8, 9, 20, 40, 45];
   numbers.pop();// 45
 
-  
   ```
 20. `reduce`
-  - Parameter:
-  - Return:
+  - Parameter: - callbackFn 
+               - initial value         
+  - Return: New array after running the reducer call back function 
   - Example:
   ```js
+   let numbers = [11, 32, 53, 47 , 55 , 76, 70, 80, 91, 20, 40, 45];
+   let sum = numbers.reduce((acc, num) => {
+    return acc + num;
+   }, 0); // 620
+   let fruits = ['Mango', 'Apple', 'Banana', 'Grapes', 'Papaya', 'Orange', 'Blue berry'];
+   let allFruits = fruits.reduce((acc, fruit) => {
+    return acc + fruit + ' ';
+   }, '' ); // 'Mango Apple Banana Grapes Papaya Orange Blue berry '
+   let months = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug'];
+   let eightMonths = months.reduce((acc, month) => {
+    return acc + month + ' ';
+   }, ''); // ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug']
   ```
+  - `reduce` Returns a new array after going through the reducer call back function
 21. `slice`
-  - Parameter:
-  - Return:
+  - Parameter: - start 
+               - end
+  - Return: New array containing the deleted elements
   - Example:
   ```js
+  let months = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug'];
+  months.splice(2);// ['March', 'April', 'May', 'June', 'July', 'Aug']
+  let fruits = ['Mango', 'Apple', 'Banana', 'Grapes', 'Papaya', 'Orange', 'Blue berry'];
+  fruits.splice(2, 3); //['Banana', 'Grapes', 'Papaya']
+  let flowers = ['Rose', 'Lotus', 'Jasmine', 'Lily'];
+  flowers.slice(1, 2);// ['Lotus']
   ```
+  - `splice` Return shallow copy of a portion of an array into a new array slected from start to end
 22. `some`
-  - Parameter:
-  - Return:
+  - Parameter: - call back function
+               - thisArg
+  - Return: true if the callback function returns a truthy value for at least one element in the array. Otherwise, false.
   - Example:
   ```js
+   let isBelow5 = (num) => num < 5;
+  let num = [1, 2, 3, 4 , 5 , 6, 7, 8, 9];
+  num.some(isBelow5); // true
+  let numbers = ['20', '33', '34', '58', '1', '2', '7', '9'];
+  let evenNum = (num) => num % 2 === 0;
+  num.some(evenNum); //  true
+  let price = [50013, 90001, 200002, 150002, 702, 5507];
+  let priceBelow1000 = (price) => price < 1000; 
+  price.some(priceBelow1000);// true
   ```
-
+  - `some` Checks whether at least one element in the array passes the test described in the function and returns true or false accordingly
