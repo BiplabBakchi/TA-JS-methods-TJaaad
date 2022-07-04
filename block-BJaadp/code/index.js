@@ -12,23 +12,39 @@ let persons = [
   { name: 'John', grade: 17, sex: 'M' },
   { name: 'Arya', grade: 14, sex: 'F' },
 ];
-
 // NOTE: Use reduce method whereever you can to solve this exercise:
 
 // Find the average grade
-
+let averageGrade = persons.reduce((acc, cv)=>{
+  acc += cv.grade;
+  return acc;
+},0) / persons.length;
 // Find the average grade of male
-
+let male = persons.filter((person) => person.sex ==="M");
+let averageMaleGrade = male.reduce((acc, cv) => {
+  acc +=cv.grade;
+  return acc;
+},0) / male.length; 
 // Find the average grade of female
-
+let female = persons.filter((person) => person.sex ==="F");
+let averageFemaleGrade = female.reduce((acc, cv) => {
+  acc +=cv.grade;
+  return acc;
+},0) / female.length; 
 // Find the highest grade
-
+let grade = persons.map((person) => person.grade);
+let highestGrade = grade.sort((a, b)=> a - b).pop();
 // Find the highest grade in male
-
+let maleGrade = male.map((person) => person.grade);
+let highestMaleGrade = maleGrade.sort((a, b)=> a -b).pop();
 // Find the highest grade in female
-
+let femaleGrade = female.map((person) => person.grade);
+let highestFemaleGrade = femaleGrade.sort((a, b)=> a -b).pop();
 // Find the highest grade for people whose name starts with 'J' or 'P'
-
+let personWithJorP = persons.filter((person)=> person.name.startsWith('J') ||
+person.name.startsWith('P'));
+let gradeOfPersonWithJorP = personWithJorP.map((person)=> person.grade);
+let highestGradeOfPersonWithJorP = gradeOfPersonWithJorP.sort((a, b)=> a - b).pop();
 const fruitBasket = [
   'banana',
   'cherry',
@@ -51,7 +67,9 @@ that fruit has appeared in the array. Store it in new variable fruitsObj
 Output: 
 {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
 */
-
+let fruitsObj = fruitBasket.reduce((acc,cv) => {
+     return acc[cv] ? ++acc[cv] : acc[cv] = 1, acc
+},{});
 /* 
 
 Use the fruitBasket array to create an array of array. Each array will contain two values name of fruit and number of times
@@ -61,6 +79,11 @@ Output:
 
 [['banana', 2], ['cherry', 3], ['orange', 3], ['apple', 2], ['fig', 1]]
 */
+let fruitsArray = fruitBasket.reduce((acc,cv) => {
+  return acc[cv] ? ++acc[cv] : acc[cv] = 1, acc
+},[]);
+
+ 
 
 const data = [
   [1, 2, 3],
@@ -68,7 +91,9 @@ const data = [
   [7, 8, 9],
   [10, 11, 12],
 ];
-
+let flatened = data.reduce((acc, cv)=>{
+  return acc.concat(cv);
+},[]);
 // Using reduce flat data array
 
 const dataTwo = [
@@ -89,6 +114,26 @@ Create these functions which accepts a number value and returns a number value:
   - `triple` triples the input 
   - `half` converts the value to half and return the integer value not decimal (use Math.round(21.5) => 21)
 */
+function numReturn(num) {
+  return num;
+}
+function addOne(num) {
+  return num + 1;
+}
+function double(num) {
+  return num * 2;
+}
+function decrementOne(num) {
+  return num - 1;
+}
+function triple(num) {
+  return num * 3;
+}
+function half (num) {
+  return Math.round(num / 2);
+}
+
+
 
 let pipeline = [
   increment,
