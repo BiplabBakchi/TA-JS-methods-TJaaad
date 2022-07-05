@@ -2,6 +2,7 @@
 
 function countAllPeople() {
   // your code goes here
+  houses.Object.keys(houses.names).length
 }
 
 function peopleByHouses() {
