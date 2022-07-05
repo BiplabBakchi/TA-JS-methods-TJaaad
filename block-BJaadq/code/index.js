@@ -1,36 +1,58 @@
 // NOTE: You can not use reduce methods to solve this exercise
 
 function countAllPeople() {
-  // your code goes here
-  houses.Object.keys(houses.names).length
+  let totalPeople = 0;
+  got.houses.forEach(house => {
+   totalPeople += house.people.length;
+  });
+  return totalPeople;
 }
 
 function peopleByHouses() {
-  // your code goes here
+  let result = {};
+  got.houses.forEach((house)=> {
+    result[house.name] = house.people.length;
+  });
+  return result;
 }
 
 function everyone() {
-  // your code goes here
+  let result = [];
+  got.houses.forEach((house) => {
+    let  peopleName = house.people.map((person)=>
+    person.name);
+    result = result.concat(peopleName);
+  });
+  
+  return result;
 }
 
 function nameWithS() {
-  // your code goes here
+  let allPeople = everyone();
+  return allPeople.filter(name => name.toUpperCase().includes('S'));
 }
 
 function nameWithA() {
-  // your code goes here
+  let allPeople = everyone();
+  return allPeople.filter(name => name.toUpperCase().includes('A'));
 }
 
 function surnameWithS() {
-  // your code goes here
+  let allPeople = everyone();
+  return allPeople.filter(name => name.split(' ')[1].toUpperCase().includes('S'));
 }
 
 function surnameWithA() {
-  // your code goes here
+  let allPeople = everyone();
+  return allPeople.filter(name => name.split(' ')[1].toUpperCase().includes('A'));
 }
 
 function peopleNameOfAllHouses() {
-  // your code goes here
+ let result ={};
+ got.houses.forEach((house) => {
+  result[house.name] = house.people.map((people) => people.name);
+ });
+ return result;
 }
 
 // Testing your result after writing your function
