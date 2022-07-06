@@ -29,22 +29,22 @@ function everyone() {
 
 function nameWithS() {
   let allPeople = everyone();
-  return allPeople.filter(name => name.toUpperCase().includes('S'));
+  return allPeople.filter(name => name.toLowerCase().includes('s'));
 }
 
 function nameWithA() {
   let allPeople = everyone();
-  return allPeople.filter(name => name.toUpperCase().includes('A'));
+  return allPeople.filter(name => name.toLowerCase().includes('a'));
 }
 
 function surnameWithS() {
   let allPeople = everyone();
-  return allPeople.filter(name => name.split(' ')[1].toUpperCase().includes('S'));
+  return allPeople.filter(name => name.split(' ')[1].toLowerCase().startsWith('s'));
 }
 
 function surnameWithA() {
   let allPeople = everyone();
-  return allPeople.filter(name => name.split(' ')[1].toUpperCase().includes('A'));
+  return allPeople.filter(name => name.split(' ')[1].toLowerCase().startsWith('a'));
 }
 
 function peopleNameOfAllHouses() {
